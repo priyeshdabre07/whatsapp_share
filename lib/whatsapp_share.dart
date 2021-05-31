@@ -34,17 +34,13 @@ class WhatsappShare {
   /// - Phone: is the [phone] contact number to share with.
 
   static Future<bool> share({
-    @required String phone,
-    String text,
-    String linkUrl,
+    required String phone,
+    String? text,
+    String? linkUrl,
     Package package = Package.whatsapp,
   }) async {
-    assert(phone != null && phone.isNotEmpty);
-    assert(package != null);
-
-    if (phone == null && phone.isNotEmpty) {
-      throw FlutterError('Phone cannot be null');
-    }
+    assert( phone.isNotEmpty);
+    // assert(package != null);
 
     String _package;
     _package = package.index == 0 ? "com.whatsapp" : "com.whatsapp.w4b";
@@ -66,19 +62,17 @@ class WhatsappShare {
   /// - FilePath: Is the List of paths which can be prefilled.
   /// - Phone: is the [phone] contact number to share with.
   static Future<bool> shareFile({
-    @required List<String> filePath,
-    @required String phone,
-    String text,
+    required List<String> filePath,
+    required String phone,
+    String? text,
     Package package = Package.whatsapp,
   }) async {
-    assert(filePath != null && filePath.isNotEmpty);
-    assert(phone != null && phone.isNotEmpty);
-    assert(package != null);
+    assert(filePath.isNotEmpty);
+    assert(phone.isNotEmpty);
+    // assert(package != null);
 
-    if (filePath == null || filePath.isEmpty) {
+    if (filePath.isEmpty) {
       throw FlutterError('FilePath cannot be null');
-    } else if (phone == null && phone.isNotEmpty) {
-      throw FlutterError('Phone cannot be null');
     }
 
     String _package;
